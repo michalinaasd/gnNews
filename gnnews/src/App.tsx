@@ -1,21 +1,10 @@
-import React from "react";
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header/Header";
-import NewsFeed from "./components/Content/NewsFeed";
+import Content from "./components/Content/Content";
 
 function App() {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <Header />
-            <NewsFeed />
-          </>
-        }
-      />
+      <Route path="/" element={<Content />} />
     </Routes>
   );
 }

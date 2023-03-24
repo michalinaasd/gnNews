@@ -10,7 +10,7 @@ const apiKey = "e0aed983f92c44adb075df3f21d2b500"; // replace with your NewsAPI 
 export async function getNewsData(query: string): Promise<News[] | null> {
   const url =
     "https://newsapi.org/v2/everything?" +
-    "q=Apple&" +
+    `q=${query}&` +
     "from=2023-03-23&" +
     "sortBy=popularity&" +
     `apiKey=${apiKey}`;

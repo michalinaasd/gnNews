@@ -2,14 +2,23 @@ import { List, ListItem, ListItemText, Button, Box } from "@mui/material";
 import { News } from "../../newsApiService";
 
 interface ListViewProps {
-  data: News[];
+  data: News[] | null;
 }
 
 const ListView = (props: ListViewProps) => {
   const { data } = props;
+
+  if (!data) {
+    return <p>Loading...</p>;
+  }
+
+  if (!data || data.length === 0) {
+    return <p>No data</p>;
+  }
+
   return (
     <List style={{ padding: "10px" }}>
-      {data.map((newsItem) => (
+      {data?.map((newsItem) => (
         <ListItem
           key={newsItem.title}
           alignItems="flex-start"
