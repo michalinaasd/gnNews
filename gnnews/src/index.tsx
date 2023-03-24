@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./state/store";
+import Content from "./components/Content/Content";
 
 const root = document.getElementById("root");
 
@@ -13,7 +13,7 @@ render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <Content />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

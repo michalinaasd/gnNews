@@ -1,6 +1,7 @@
 import { Drawer, styled } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import { Country, getCountriesWithFlags } from "../../countryApiService";
 import Header from "../Header/Header";
 import CountryList from "./CountryList";
@@ -8,7 +9,6 @@ import NewsFeed from "./NewsFeed";
 
 const Content = () => {
   const [countries, setCountries] = useState<Country[] | null>(null);
-  const [currentCountry, setCurrentCountry] = useState<string | null>(null);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -35,19 +35,11 @@ const Content = () => {
       </Box>
       <Box display="flex" sx={{ height: "89%" }} overflow="hidden">
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
-          <CountryList
-            countries={countries}
-            handleClick={(newCurrentCountry: string) =>
-              setCurrentCountry(newCurrentCountry)
-            }
-          />
+          <CountryList countries={countries} />
         </Drawer>
-        <Box
-          sx={{ "&::-webkit-scrollbar": { display: "none" } }}
-          overflow="scroll"
-        >
-          <NewsFeed query={currentCountry} />
-        </Box>
+        <Routes>
+          <Route path="/country/:countryName" element={<NewsFeed />} />
+        </Routes>
       </Box>
     </Box>
   );
