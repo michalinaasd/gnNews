@@ -10,10 +10,11 @@ const NewsListItemText = ({ newsItem }: NewsListItemTextProps) => {
     <ListItemText
       primary={
         <Box display="flex" justifyContent="space-between">
-          <span>{newsItem.title}</span>
+          <span>{newsItem.source.name}</span>
           <span>{moment(newsItem.publishedAt).format("DD-MM-YYYY")}</span>
         </Box>
       }
+      secondary={<span>{newsItem.title}</span>}
     />
   );
 };

@@ -1,9 +1,10 @@
 import { List, ListItem } from "@mui/material";
 import { useState } from "react";
-import { News } from "../../newsApiService";
-import PopUp, { PopUpElement } from "../Header/PopUp";
-import usePopUp from "../Header/usePopUp";
-import NewsListItemText from "./NewsListItem";
+import { News } from "../../../newsApiService";
+import PopUp, { PopUpElement } from "../../Header/PopUp";
+import usePopUp from "../../Header/usePopUp";
+import NewsListItemText from "../NewsListItem";
+import "./listView.css";
 
 const INITIAL_POPUP_STATE: PopUpElement = {
   title: "",
@@ -28,18 +29,6 @@ const ListView = ({ data }: ListViewProps) => {
     handleClickOpen();
   };
 
-  const handleMouseEnter = (
-    event: React.MouseEvent<HTMLLIElement, MouseEvent>
-  ) => {
-    event.currentTarget.style.backgroundColor = "#F5F5F5";
-  };
-
-  const handleMouseLeave = (
-    event: React.MouseEvent<HTMLLIElement, MouseEvent>
-  ) => {
-    event.currentTarget.style.backgroundColor = "transparent";
-  };
-
   if (!data) {
     return <p>Loading...</p>;
   }
@@ -49,19 +38,13 @@ const ListView = ({ data }: ListViewProps) => {
   }
 
   return (
-    <List style={{ padding: "10px" }}>
+    <List className="list-view">
       {data?.map((newsItem) => (
         <ListItem
           key={Math.random()}
           alignItems="flex-start"
-          style={{
-            border: "1px solid black",
-            marginBottom: "10px",
-            cursor: "pointer",
-          }}
+          className="list-item"
           onClick={() => clickHandler(newsItem)}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
         >
           <NewsListItemText newsItem={newsItem} />
         </ListItem>

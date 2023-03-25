@@ -66,7 +66,12 @@ const GridView = ({ data }: GridViewProps) => {
                   {newsItem.title}
                 </Typography>
               </Tooltip>
-              <Typography variant="body1">{newsItem.description}</Typography>
+              <Typography variant="body1" className="description">
+                {newsItem.description}
+              </Typography>
+              <div className="read-more" onClick={() => clickHandler(newsItem)}>
+                Read more
+              </div>
             </CardContent>
           </Card>
         </Grid>
