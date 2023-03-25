@@ -1,18 +1,50 @@
-import { List, ListItem, ListItemText, Button, Box } from "@mui/material";
+import { List, ListItem } from "@mui/material";
+import { useState } from "react";
 import { News } from "../../newsApiService";
+import PopUp, { PopUpElement } from "../Header/PopUp";
+import usePopUp from "../Header/usePopUp";
+import NewsListItemText from "./NewsListItem";
+
+const INITIAL_POPUP_STATE: PopUpElement = {
+  title: "",
+  content: "",
+};
 
 interface ListViewProps {
   data: News[] | null;
 }
 
-const ListView = (props: ListViewProps) => {
-  const { data } = props;
+const ListView = ({ data }: ListViewProps) => {
+  const [open, handleClickOpen, handleClose] = usePopUp();
+
+  const [currentElement, setCurrentElement] =
+    useState<PopUpElement>(INITIAL_POPUP_STATE);
+
+  const clickHandler = (newsItem: News) => {
+    setCurrentElement({
+      title: newsItem.title,
+      content: newsItem.description,
+    });
+    handleClickOpen();
+  };
+
+  const handleMouseEnter = (
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>
+  ) => {
+    event.currentTarget.style.backgroundColor = "#F5F5F5";
+  };
+
+  const handleMouseLeave = (
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>
+  ) => {
+    event.currentTarget.style.backgroundColor = "transparent";
+  };
 
   if (!data) {
     return <p>Loading...</p>;
   }
 
-  if (!data || data.length === 0) {
+  if (!data?.length) {
     return <p>No data</p>;
   }
 
@@ -20,38 +52,26 @@ const ListView = (props: ListViewProps) => {
     <List style={{ padding: "10px" }}>
       {data?.map((newsItem) => (
         <ListItem
-          key={newsItem.title}
+          key={Math.random()}
           alignItems="flex-start"
-          style={{ border: "1px solid black", marginBottom: "10px" }}
+          style={{
+            border: "1px solid black",
+            marginBottom: "10px",
+            cursor: "pointer",
+          }}
+          onClick={() => clickHandler(newsItem)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          <ListItemText
-            primary={newsItem.title}
-            secondary={
-              <Box display="flex" justifyContent="space-between">
-                <Box sx={{ flexBasis: "80%" }} p={1}>
-                  <span>{newsItem.description}</span>
-                </Box>
-                <Box
-                  display="flex"
-                  sx={{
-                    flexBasis: "20%",
-                  }}
-                  alignItems="center"
-                  justifyContent="end"
-                >
-                  <Button
-                    variant="contained"
-                    href={newsItem.url}
-                    target="_blank"
-                  >
-                    Read more
-                  </Button>
-                </Box>
-              </Box>
-            }
-          />
+          <NewsListItemText newsItem={newsItem} />
         </ListItem>
       ))}
+      <PopUp
+        id="list-pop-up"
+        handleClose={handleClose}
+        open={open}
+        popUpElement={currentElement}
+      />
     </List>
   );
 };

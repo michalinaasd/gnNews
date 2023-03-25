@@ -1,15 +1,15 @@
 import { Menu } from "@mui/icons-material";
 import {
-  Box,
   AppBar,
   Toolbar,
   Typography,
   Stack,
-  styled,
   IconButton,
+  Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import PopUp from "./PopUp";
+import usePopUp from "./usePopUp";
 import ViewLayoutSwitcher from "./ViewLayoutSwitcher";
 
 interface HeaderProps {
@@ -18,6 +18,9 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
   const { handleMenuClick } = props;
+
+  const [open, handleClickOpen, handleClose] = usePopUp();
+
   return (
     <AppBar position="static" color="secondary">
       <Toolbar>
@@ -38,7 +41,15 @@ const Header = (props: HeaderProps) => {
         </Typography>
         <Stack direction="row" spacing={1}>
           <ViewLayoutSwitcher />
-          <PopUp buttonLabel="Open Dialog" />
+          <Button variant="contained" onClick={handleClickOpen}>
+            Open Dialog
+          </Button>
+          <PopUp
+            id="header-pop-up"
+            handleClose={handleClose}
+            open={open}
+            popUpElement={{ title: " title", content: " content" }}
+          />
         </Stack>
       </Toolbar>
     </AppBar>

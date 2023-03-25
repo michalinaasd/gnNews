@@ -1,11 +1,18 @@
+interface NewsSource {
+  id: unknown;
+  name: string;
+}
+
 export interface News {
   title: string;
   description: string;
   url: string;
   urlToImage: string;
+  publishedAt: string;
+  source: NewsSource;
 }
 
-const apiKey = "e0aed983f92c44adb075df3f21d2b500"; // replace with your NewsAPI API key
+const apiKey = "7c616d9546fb4782aca819838b919f0f"; // replace with your NewsAPI API key
 
 export async function getNewsData(query: string): Promise<News[] | null> {
   const url =
