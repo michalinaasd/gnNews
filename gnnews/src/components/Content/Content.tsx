@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Country, getCountriesWithFlags } from "../../countryApiService";
+import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import CountryList from "./CountryList";
 import NewsFeed from "./NewsFeed";
@@ -29,11 +30,21 @@ const Content = () => {
   }
 
   return (
-    <Box sx={{ height: "100vh" }}>
-      <Box sx={{ height: "11%" }}>
+    <Box sx={{ height: "100vh" }} display="flex" flexDirection="column">
+      <Box sx={{ flexGrow: "1" }}>
         <Header handleMenuClick={toggleDrawer(true)} />
       </Box>
-      <Box display="flex" sx={{ height: "89%" }} overflow="hidden">
+      <Box
+        display="flex"
+        sx={{
+          scrollbarWidth: "none",
+          "-ms-overflow-style": "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        }}
+        overflow="scroll"
+      >
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
           <CountryList countries={countries} />
         </Drawer>
@@ -41,6 +52,7 @@ const Content = () => {
           <Route path="/country/:countryName" element={<NewsFeed />} />
         </Routes>
       </Box>
+      <Footer />
     </Box>
   );
 };

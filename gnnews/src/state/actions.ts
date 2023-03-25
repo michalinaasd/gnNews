@@ -7,4 +7,11 @@ interface SetViewTypeAction {
   payload: ViewType;
 }
 
-export type ActionTypes = SetViewTypeAction;
+export const SET_QUERY_RESULTS_COUNT = "SET_QUERY_RESULTS_COUNT";
+
+interface SetQueryResultsCountAction {
+  type: typeof SET_QUERY_RESULTS_COUNT;
+  payload: number;
+}
+
+export type ActionTypes = SetQueryResultsCountAction | SetViewTypeAction;
