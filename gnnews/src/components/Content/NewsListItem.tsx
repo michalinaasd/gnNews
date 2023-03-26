@@ -8,13 +8,13 @@ interface NewsListItemTextProps {
 const NewsListItemText = ({ newsItem }: NewsListItemTextProps) => {
   return (
     <ListItemText
-      primary={
+      primary={<span>{newsItem.title}</span>}
+      secondary={
         <Box display="flex" justifyContent="space-between">
           <span>{newsItem.source.name}</span>
           <span>{moment(newsItem.publishedAt).format("DD-MM-YYYY")}</span>
         </Box>
       }
-      secondary={<span>{newsItem.title}</span>}
     />
   );
 };

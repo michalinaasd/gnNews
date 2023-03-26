@@ -1,21 +1,20 @@
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Country } from "../../countryApiService";
+import { Country } from "../../../countryApiService";
+import "./countryList.css";
 
-const CountryList = (props: any) => {
-  const { countries } = props;
+interface CountryListProps {
+  countries: Country[];
+  onClick?: () => void;
+}
+
+const CountryList = ({ countries, onClick }: CountryListProps) => {
   return (
-    <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
+    <ul className="country-list">
       {countries.map((country: Country) => (
         <li key={country.name.common}>
-          <Link
-            to={`/country/${country.name.common}`}
-            style={{ marginLeft: "8px" }}
-          >
-            <Button
-              size="small"
-              style={{ textTransform: "none", padding: "2px" }}
-            >
+          <Link to={`/country/${country.name.common}`}>
+            <Button size="small" className="country-button" onClick={onClick}>
               <img
                 src={country.flags.png}
                 alt={country.name.common}

@@ -1,11 +1,11 @@
-import { Drawer, styled } from "@mui/material";
+import { Button, Drawer, styled } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Country, getCountriesWithFlags } from "../../countryApiService";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import CountryList from "./CountryList";
+import CountryList from "./CountryList/CountryList";
 import NewsFeed from "./NewsFeed";
 
 const Content = () => {
@@ -46,7 +46,7 @@ const Content = () => {
         overflow="scroll"
       >
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
-          <CountryList countries={countries} />
+          <CountryList countries={countries} onClick={toggleDrawer(false)} />
         </Drawer>
         <Routes>
           <Route path="/country/:countryName" element={<NewsFeed />} />
