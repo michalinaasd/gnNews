@@ -3,13 +3,10 @@ import { useState } from "react";
 import { News } from "../../../newsApiService";
 import PopUp, { PopUpElement } from "../../Header/PopUp";
 import usePopUp from "../../Header/usePopUp";
+import { INITIAL_POPUP_STATE } from "../../helpers";
 import NewsListItemText from "../NewsListItem";
+import NewsPopupItem from "../NewsPopupItem/NewsPopupItem";
 import "./listView.css";
-
-const INITIAL_POPUP_STATE: PopUpElement = {
-  title: "",
-  content: "",
-};
 
 interface ListViewProps {
   data: News[] | null;
@@ -24,7 +21,7 @@ const ListView = ({ data }: ListViewProps) => {
   const clickHandler = (newsItem: News) => {
     setCurrentElement({
       title: newsItem.title,
-      content: newsItem.description,
+      content: <NewsPopupItem news={newsItem} />,
     });
     handleClickOpen();
   };

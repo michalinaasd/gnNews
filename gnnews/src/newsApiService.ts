@@ -5,6 +5,7 @@ interface NewsSource {
 
 export interface News {
   title: string;
+  author: string;
   description: string;
   url: string;
   urlToImage: string;
@@ -18,7 +19,7 @@ export async function getNewsData(query: string): Promise<News[] | null> {
   const url =
     "https://newsapi.org/v2/everything?" +
     `q=${query}&` +
-    "from=2023-03-23&" +
+    "from=2023-03-25&" +
     "sortBy=popularity&" +
     `apiKey=${apiKey}`;
 

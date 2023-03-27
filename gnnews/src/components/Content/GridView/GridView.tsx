@@ -10,6 +10,8 @@ import { useState } from "react";
 import { News } from "../../../newsApiService";
 import PopUp, { PopUpElement } from "../../Header/PopUp";
 import usePopUp from "../../Header/usePopUp";
+import { INITIAL_POPUP_STATE } from "../../helpers";
+import NewsPopupItem from "../NewsPopupItem/NewsPopupItem";
 import "./gridView.css";
 
 interface GridViewProps {
@@ -26,18 +28,13 @@ const getRandomImg = () => {
 const GridView = ({ data }: GridViewProps) => {
   const [open, handleClickOpen, handleClose] = usePopUp();
 
-  const INITIAL_POPUP_STATE: PopUpElement = {
-    title: "",
-    content: "",
-  };
-
   const [currentElement, setCurrentElement] =
     useState<PopUpElement>(INITIAL_POPUP_STATE);
 
   const clickHandler = (newsItem: News) => {
     setCurrentElement({
       title: newsItem.title,
-      content: newsItem.description,
+      content: <NewsPopupItem news={newsItem} />,
     });
     handleClickOpen();
   };

@@ -1,4 +1,4 @@
-import { Button, Drawer, styled } from "@mui/material";
+import { Drawer } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import CountryList from "./CountryList/CountryList";
 import NewsFeed from "./NewsFeed";
+import "./content.css";
 
 const Content = () => {
   const [countries, setCountries] = useState<Country[] | null>(null);
@@ -31,20 +32,8 @@ const Content = () => {
 
   return (
     <Box sx={{ height: "100vh" }} display="flex" flexDirection="column">
-      <Box sx={{ flexGrow: "1" }}>
-        <Header handleMenuClick={toggleDrawer(true)} />
-      </Box>
-      <Box
-        display="flex"
-        sx={{
-          scrollbarWidth: "none",
-          "-ms-overflow-style": "none",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-        }}
-        overflow="scroll"
-      >
+      <Header handleMenuClick={toggleDrawer(true)} />
+      <Box display="flex" height="100%" padding="5px" overflow="scroll">
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
           <CountryList countries={countries} onClick={toggleDrawer(false)} />
         </Drawer>

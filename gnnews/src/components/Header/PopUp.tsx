@@ -1,14 +1,5 @@
 import { Close } from "@mui/icons-material";
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  Typography,
-  DialogActions,
-  DialogTitle,
-  IconButton,
-} from "@mui/material";
-import { useState } from "react";
+import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 
 export interface DialogTitleProps {
   id: string;
@@ -18,7 +9,7 @@ export interface DialogTitleProps {
 
 export interface PopUpElement {
   title: string;
-  content: string;
+  content: string | React.ReactNode;
 }
 
 interface PopUpProps {
@@ -61,12 +52,9 @@ const PopUp = (props: PopUpProps) => {
         <BootstrapDialogTitle id={id} onClose={handleClose}>
           {popUpElement.title}
         </BootstrapDialogTitle>
-        <DialogContent dividers>{popUpElement.content}</DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
-          </Button>
-        </DialogActions>
+        <DialogContent dividers sx={{ mb: 3 }}>
+          {popUpElement.content}
+        </DialogContent>
       </Dialog>
     </>
   );
