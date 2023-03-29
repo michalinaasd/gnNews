@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Country } from "../../../countryApiService";
+import { Country } from "../../../services/countryApiService";
 import "./countryList.css";
 
 interface CountryListProps {

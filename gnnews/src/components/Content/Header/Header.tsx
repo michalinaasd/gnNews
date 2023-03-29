@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import PopUp from "./PopUp";
 import usePopUp from "./usePopUp";
-import ViewLayoutSwitcher from "./ViewLayoutSwitcher";
+import ViewLayoutSwitcher from "./ViewLayoutSwitcher/ViewLayoutSwitcher";
 
 interface HeaderProps {
   handleMenuClick: () => void;

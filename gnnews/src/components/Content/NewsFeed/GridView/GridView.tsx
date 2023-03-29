@@ -7,10 +7,10 @@ import {
   Tooltip,
 } from "@mui/material";
 import { useState } from "react";
-import { News } from "../../../newsApiService";
+import { News } from "../../../../services/newsApiService";
 import PopUp, { PopUpElement } from "../../Header/PopUp";
 import usePopUp from "../../Header/usePopUp";
-import { INITIAL_POPUP_STATE } from "../../helpers";
+import { INITIAL_POPUP_STATE } from "../../../helpers";
 import NewsPopupItem from "../NewsPopupItem/NewsPopupItem";
 import "./gridView.css";
 

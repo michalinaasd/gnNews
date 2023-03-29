@@ -1,6 +1,6 @@
 import { Box, ListItemText } from "@mui/material";
 import moment from "moment";
-import { News } from "../../newsApiService";
+import { News } from "../../../services/newsApiService";
 
 interface NewsListItemTextProps {
   newsItem: News;

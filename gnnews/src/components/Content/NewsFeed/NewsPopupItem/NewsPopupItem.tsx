@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { News } from "../../../newsApiService";
+import { News } from "../../../../services/newsApiService";
 import "./newsPopupItem.css";
 
 interface NewsPopupItemProps {

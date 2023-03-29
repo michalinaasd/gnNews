@@ -2,20 +2,16 @@ import { FormatListBulleted, GridOn } from "@mui/icons-material";
 import { Tooltip, IconButton } from "@mui/material";
 import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { SET_VIEW_TYPE } from "../../state/actions";
-import { State } from "../interfaces";
-import { ViewType } from "../types";
+import { State } from "../../../interfaces";
+import { ViewType } from "../../../types";
+import { setViewType } from "../../../../state/appReducer";
 
 const ViewLayoutSwitcher = () => {
-  const selectViewType = (state: State) => state.viewType;
-  const viewType = useSelector(selectViewType);
+  const viewType = useSelector((state: State) => state.app.viewType);
   const dispatch = useDispatch();
 
-  const setViewType = (newViewType: ViewType) => {
-    dispatch({
-      type: SET_VIEW_TYPE,
-      payload: newViewType,
-    });
+  const handleViewTypeChange = (newViewType: ViewType) => {
+    dispatch(setViewType(newViewType));
   };
 
   const isGrid = useMemo(() => {
@@ -24,7 +20,7 @@ const ViewLayoutSwitcher = () => {
 
   const handleToggleViewType = () => {
     const newViewType = isGrid ? "list" : "grid";
-    setViewType(newViewType);
+    handleViewTypeChange(newViewType);
   };
 
   return (
