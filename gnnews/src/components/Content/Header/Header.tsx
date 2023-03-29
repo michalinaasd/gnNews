@@ -8,6 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { HEADER_POPUP } from "../../helpers";
 import PopUp from "./PopUp";
 import usePopUp from "./usePopUp";
 import ViewLayoutSwitcher from "./ViewLayoutSwitcher/ViewLayoutSwitcher";
@@ -48,7 +49,7 @@ const Header = (props: HeaderProps) => {
             id="header-pop-up"
             handleClose={handleClose}
             open={open}
-            popUpElement={{ title: " title", content: " content" }}
+            popUpElement={HEADER_POPUP}
           />
         </Stack>
       </Toolbar>

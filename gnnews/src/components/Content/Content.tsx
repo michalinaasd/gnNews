@@ -13,6 +13,7 @@ import "./content.css";
 import { Provider } from "react-redux";
 import { store } from "../../state/store";
 import { Routes, Route } from "react-router-dom";
+import HelloPage from "./HelloPage";
 
 const Content = () => {
   const [countries, setCountries] = useState<Country[] | null>(null);
@@ -39,7 +40,7 @@ const Content = () => {
     <Provider store={store}>
       <Box sx={{ height: "100vh" }} display="flex" flexDirection="column">
         <Header handleMenuClick={toggleDrawer(true)} />
-        <Box display="flex" height="100%" padding="5px" overflow="scroll">
+        <Box className="mainContent">
           <Drawer
             anchor="left"
             open={isDrawerOpen}
@@ -49,6 +50,7 @@ const Content = () => {
           </Drawer>
           <Routes>
             <Route path="/country/:countryName" element={<NewsFeed />} />
+            <Route path="/" element={<HelloPage />} />
           </Routes>
         </Box>
         <Footer />

@@ -10,3 +10,10 @@
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
+
+.mainContent {
+  display: flex;
+  overflow-y: scroll;
+  padding: 5px;
+  height: 100%;
+}
